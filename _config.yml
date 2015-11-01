@@ -16,12 +16,10 @@ defaults:
 
 description: 描述 Stylish Jekyll Theme
 author:
-  name: LauKing
+  name: kingizz
   email: 517821485@qq.com
   github: zziking
-  twitter: kingizz
-  pinterest: kingizz
-  linkedin: kingizz
+  weibo: kingizz
   bio: <p>千里不辞行路远</p><p>时光早晚到天涯</p><p>长风破浪会有时</p><p>直挂云帆济沧海</p>
   #email_md5: 726351295ec82e145928582f595aa3aa
 
@@ -30,7 +28,7 @@ categories_path: categories.html
 tags_path: tags.html
 
 BASE_PATH: 
-title: LauKing’s Blog #sidebar title
+title: kingizz #sidebar title
 kz_full_content_index: false #文章列表是否显示文章的全部内容
 
 comments:
