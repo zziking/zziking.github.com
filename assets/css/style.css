@@ -3,8 +3,16 @@ body{
 	color: #2c3e50;
 	font-family: "ff-tisa-web-pro-1", "ff-tisa-web-pro-2", "Lucida Grande", "Hiragino Sans GB", "Hiragino Sans GB W3", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
 	-webkit-font-smoothing: antialiased;
+	line-height: 1.8;
+	font-size: 16px;
 }
 
+code{
+	color: #2c3e50;
+	background-color: #f5f5f5;
+	font-size: 80%;
+	padding: 2px 4px;
+}
 
 .sidebar {
 	position: fixed;
