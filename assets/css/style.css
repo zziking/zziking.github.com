@@ -247,3 +247,17 @@ ul.dropdown-menu>li>a>i.fa {
 .ds-powered-by{
 	display: none;
 }
+
+h1, h2, h3 {
+	margin-top: 40px;
+	margin-bottom: 20px;
+}
+h4 {
+	margin-top: 30px;
+	margin-bottom: 15px;
+}
+
+.author-bio {
+	margin-top: 4px;
+	margin-bottom: 4px;
+}
