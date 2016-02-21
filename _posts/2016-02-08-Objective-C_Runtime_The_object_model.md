@@ -31,7 +31,7 @@ Objective-C语言会将编译和链接时要做的事推迟到运行时进行，
 
 Objective-C是一门面向对象的语言，我们无时无刻地在和对象打交道，对象本质上是一个`objc_object`结构体，他包含一个唯一的私有成员变量`isa`,可以在`objc.h`中看到对象的定义：
 
-{% highlight objective-c linenos %}
+```objc
 
 /// A pointer to an instance of a class.
 
@@ -42,11 +42,12 @@ typedef struct objc_object *id;
 struct objc_object {
     Class isa  OBJC_ISA_AVAILABILITY;
 };
-{% endhighlight %}
+
+```
 
 对象的`isa`指针(注:在 64 位 CPU 下，`isa` 已经不再是一个简单的指针,具体详情可参考[Non-pointer isa](http://www.sealiesoftware.com/blog/archive/2013/09/24/objc_explain_Non-pointer_isa.html))指向该对象的类，这个类其实是指向`objc_class`的结构体，在`runtime.h` 中可以看到这个结构体的定义：
 
-{% highlight objective-c linenos %}
+```objc
 /// An opaque type that represents an Objective-C class.
 typedef struct objc_class *Class;
 
@@ -68,7 +69,7 @@ struct objc_class {
 } OBJC2_UNAVAILABLE;
 /* Use `Class` instead of `struct objc_class *` */
 
-{% endhighlight %}
+```
 
 从结构体的定义可以看到类描述了实例对象的特点，如对象占用的内存大小、成员变量列表、成员函数列表、方法缓存、父类的信息等，关于类的方法列表及方法缓存等，将在下一篇文章中进行介绍。  Class也有一个isa指针，指向一个Class，这个isa指向的Class其实就是类的元类(meta class)，同时你可能会有疑问，每一个`objc_class`都有一个指向`objc_class`的isa指针，那总有个`isa`的终点吧？那最终的这个根类的`isa`指针指向什么呢？
 
@@ -84,7 +85,7 @@ struct objc_class {
 
 带着这个问题，我们先来写一个demo：建立两个类`Son`和`Father`,类`Son`继承自`Father`:
 
-{% highlight objective-c linenos %}
+```objc
 
 @interface Father : NSObject
 
@@ -95,12 +96,12 @@ struct objc_class {
 
 @end
 
-{% endhighlight %}
+```
 
 
 然后，执行下面这段代码：
 
-{% highlight objective-c linenos %}
+```objc
 
 Son *son = [Son new];
 
@@ -128,13 +129,13 @@ do {
     
 }while (class);
 
-{% endhighlight %}
+```
 
 
 
 最终的运行结果是：
 
-{% highlight objective-c linenos %}
+```objc
 
 2016-02-08 16:11:54.114 ObjcRuntimeDemo[4289:107651] Class Son->isa=Son(0x105d90eb8); superClass=Father(0x105d90f30); metaclass=Son(0x105d90eb8)
 
@@ -148,7 +149,7 @@ metaclass Father(0x105d90f08)->isa=NSObject(0x1065ec198); superClass=NSObject(0x
 
 metaclass NSObject(0x1065ec198)->isa=NSObject(0x1065ec198); superClass=NSObject(0x1065ec170)
  -------------------------------------
-{% endhighlight %}
+```
 
 直接看结果可能不太直观，将上述结果绘制成对象模型图：
 
@@ -162,7 +163,7 @@ metaclass NSObject(0x1065ec198)->isa=NSObject(0x1065ec198); superClass=NSObject(
 
 
 
-{% highlight objective-c linenos %}
+```objc
 
 struct objc_class : objc_object {
     // Class ISA;
@@ -171,7 +172,7 @@ struct objc_class : objc_object {
     class_data_bits_t bits;    // class_rw_t * plus custom rr/alloc flags
 ......
 
-{% endhighlight %}
+```
 
 
 
@@ -179,7 +180,7 @@ struct objc_class : objc_object {
 
 
 
-{% highlight objective-c linenos %}
+```objc
 
 Method class_getClassMethod(Class cls, SEL sel)
 {
@@ -188,7 +189,7 @@ Method class_getClassMethod(Class cls, SEL sel)
     return class_getInstanceMethod(cls->getMeta(), sel);
 }
 
-{% endhighlight %}
+```
 
 
 

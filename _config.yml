@@ -1,10 +1,16 @@
 # visit https://github.com/mojombo/jekyll/wiki/Configuration for more settings
 
+gems: [jekyll-paginate, jekyll-gist]
 paginate: 10 # pagination based on number of posts
 paginate_path: "page:num"
 exclude: ["README.md"] # files to exclude
-highlighter: pygments
-safe: true
+#highlighter: rouge
+#safe: true
+markdown: kramdown
+
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
 
 
 defaults:
