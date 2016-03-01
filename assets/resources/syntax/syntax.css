@@ -67,9 +67,12 @@
 /* add by kingizz */
 .highlight .lineno { color: #ccc; display:inline-block; padding: 0 8px 0 3px; border-right:1px solid #ccc; border-radius: 0 }
 .highlight pre code { display: block; white-space: pre; overflow-x: auto; word-wrap: normal; }
-
+.highlighter-rouge { margin-top: 10px; margin-bottom: 10px; }
+.original_statement { margin: 10px; }
 
 pre {
 	border: 0px;
-	padding: 5px 9.5px 0 9.5px;
+	padding: 5px;
+	margin: 0;
 }
+
