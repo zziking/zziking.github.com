@@ -41,3 +41,14 @@ comments:
   provider: duoshuo
   duoshuo:
     short_name: kingizz
+
+# Pagination-v2 Settings 
+# pagination:
+#   enabled: false
+#   per_page: 3
+#   offset: 2
+#   permalink: '/page/:num/'
+#   title: ':title - page :num of :max'
+#   limit: 0
+#   sort_field: 'date'
+#   sort_reverse: true
